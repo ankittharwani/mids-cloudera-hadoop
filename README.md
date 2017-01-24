@@ -12,6 +12,8 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 
 * You can just stop at Step 1, i.e. "Install and Run Docker for Mac"
 
+
+
 #### Pull the Docker Image
 * Once you have the Docker Engine up and running, you can pull the **mids-cloudera-hadoop** image.
 
@@ -24,6 +26,8 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 ```
 docker pull ankittharwani/mids-cloudera-hadoop
 ```
+
+
 
 #### Create a Docker container with the pulled image
 * Once you have the Docker image pulled, you can create a container with the following command:
@@ -63,6 +67,8 @@ For more details, you can refer to:
 docker ps
 ```
 
+
+
 #### Login to the container and launch notebook / pyspark
 
 * Once the container has been created, you can login to it (launch bash terminal):
@@ -99,4 +105,9 @@ drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /user
 drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /var
 ```
 
-* 
+* With the current Cloudera Docker image, you should also be able to access Hue, which is a web based interface to Hive/Impala/HDFS etc. To access:
+
+> http://localhost:<hue-port>/
+
+Username: cloudera
+Password: cloudera
