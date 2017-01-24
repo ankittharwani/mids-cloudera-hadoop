@@ -108,6 +108,7 @@ drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /var
 * With the current Cloudera Docker image, you should also be able to access Hue, which is a web based interface to Hive/Impala/HDFS etc. To access:
 
 > http://localhost:8888/
+
 You can replace **8888** with the **hue-port** configured above
 
 Username: cloudera
