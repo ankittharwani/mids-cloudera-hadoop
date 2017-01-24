@@ -29,6 +29,74 @@ docker pull ankittharwani/mids-cloudera-hadoop
 * Once you have the Docker image pulled, you can create a container with the following command:
 
 ```
-docker run --hostname=quickstart.cloudera --privileged=true --name=cloudera -t -i -d -p <notebook-port>:8889 -p <hue-port>:8888 -p <cloudera-manager-port>:7180 -v //Users/ankittharwani/Work/MIDS/Extras:/media/notebooks ankittharwani/mids-cloudera-hadoop:latest /usr/bin/docker-quickstart
+docker run --hostname=quickstart.cloudera \
+           --privileged=true \
+           --name=cloudera \
+           -t -i -d \
+           -p <notebook-port>:8889 \
+           -p <hue-port>:8888 \
+           -p <cloudera-manager-port>:7180 \
+           -v <host-path-to-mount-inside-container>:/media/notebooks \
+           ankittharwani/mids-cloudera-hadoop:latest \
+           /usr/bin/docker-quickstart
 ```
 
+* Replace the above properties and run the command. An example is:
+
+```
+docker run --hostname=quickstart.cloudera \
+           --privileged=true \
+           --name=cloudera \
+           -t -i -d \
+           -p 8889:8889 \
+           -p 8888:8888 \
+           -p 7180:7180 \
+           -v //Users/ankittharwani/Work/MIDS/Extras:/media/notebooks \
+           ankittharwani/mids-cloudera-hadoop:latest \
+           /usr/bin/docker-quickstart
+```
+For more details, you can refer to:
+> https://www.cloudera.com/documentation/enterprise/5-8-x/topics/quickstart_docker_container.html
+
+* Once you've created the container and has been ran, you can check running status by:
+```
+docker ps
+```
+
+#### Login to the container and launch notebook / pyspark
+
+* Once the container has been created, you can login to it (launch bash terminal):
+```
+docker exec -ti cloudera /bin/bash
+```
+
+* Once inside the terminal, you can launch notebook/pyspark by typing **pyspark** in the terminal. This will generate you a URL with a login token, which you can copy-paste in the host machine's browser.
+```
+[root@quickstart /]# pyspark
+[TerminalIPythonApp] WARNING | Subcommand `ipython notebook` is deprecated and will be removed in future versions.
+[TerminalIPythonApp] WARNING | You likely want to use `jupyter notebook` in the future
+[I 20:54:18.598 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
+[W 20:54:18.812 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 20:54:18.897 NotebookApp] Serving notebooks from local directory: /media/notebooks
+[I 20:54:18.897 NotebookApp] 0 active kernels
+[I 20:54:18.899 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8889/?token=bc0ab6b91dcb2a832f11beab991bf21ed0e9bb334cbd9393
+[I 20:54:18.899 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 20:54:18.902 NotebookApp]
+
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8889/?token=xxx
+```
+
+* You can also run a few hadoop commands to test everything is okay:
+```
+[root@quickstart /]# hdfs dfs -ls /
+Found 5 items
+drwxrwxrwx   - hdfs  supergroup          0 2016-04-06 02:26 /benchmarks
+drwxr-xr-x   - hbase supergroup          0 2017-01-24 20:49 /hbase
+drwxrwxrwt   - hdfs  supergroup          0 2017-01-24 20:50 /tmp
+drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /user
+drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /var
+```
+
+* 
