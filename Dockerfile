@@ -42,6 +42,7 @@ RUN conda install wheel
 RUN conda install unicodecsv
 RUN conda install ujson
 RUN conda install zlib
+RUN conda install mrjob
 RUN conda update --all
 RUN conda clean -t
 RUN conda clean -p

@@ -37,30 +37,20 @@ docker run --hostname=quickstart.cloudera \
            --privileged=true \
            --name=cloudera \
            -t -i -d \
-           -p <notebook-port>:8889 \
-           -p <hue-port>:8888 \
-           -p <cloudera-manager-port>:7180 \
+           -p 8889:8889 \
+           -p 8888:8888 \
+           -p 7180:7180 \
+           -p 8088:8088 \
+           -p 8042:8042 \
+           -p 19888:19888 \
            -v <host-path-to-mount-inside-container>:/media/notebooks \
            ankittharwani/mids-cloudera-hadoop:latest \
            /usr/bin/docker-quickstart
 ```
+* Replace `<host-path-to-mount-inside-container>` with the directory on your machine which you'd want to make available in the container.
 
-* Replace the above properties and run the command. An example is:
-
-```
-docker run --hostname=quickstart.cloudera \
-           --privileged=true \
-           --name=cloudera \
-           -t -i -d \
-           -p 8889:8889 \
-           -p 8888:8888 \
-           -p 7180:7180 \
-           -v //Users/ankittharwani/Work/MIDS/Extras:/media/notebooks \
-           ankittharwani/mids-cloudera-hadoop:latest \
-           /usr/bin/docker-quickstart
-```
 For more details, you can refer to:
-> https://www.cloudera.com/documentation/enterprise/5-8-x/topics/quickstart_docker_container.html
+> https://www.cloudera.com/documentation/enterprise/5-6-x/topics/quickstart_docker_container.html
 
 * Once you've created the container and has been ran, you can check running status by:
 ```
@@ -114,3 +104,36 @@ You can replace **8888** with the **hue-port** configured above
 Username: cloudera
 
 Password: cloudera
+
+
+#### Conda and Python Packages
+
+* The following python packages are installed under Conda:
+	* bokeh
+	* cython
+	* ipython
+	* ipython_genutils
+	* ipython-qtconsole
+	* ipython-notebook
+	* libpng
+	* jupyter
+	* mrjob
+	* nltk
+	* notebook
+	* numpy
+	* pandas
+	* pip
+	* scipy
+	* scikit-learn
+	* scikit-image
+	* setuptools
+	* sympy
+	* wheel
+	* unicodecsv
+	* ujson
+	* zlib
+
+* To use the miniconda environment outside of the notebook:
+```
+source /opt/anaconda/bin/activate
+```
