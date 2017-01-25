@@ -19,6 +19,11 @@ RUN yum install -y --quiet wget && \
 	rm -rf /downloads
 ENV PATH $PATH:/opt/anaconda/bin
 
+# Disable token authentication for Jupyter Notebook
+RUN touch /root/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.password = ''" >> /root/.jupyter/jupyter_notebook_config.py
+
 RUN conda update conda
 RUN conda install cython
 RUN conda install ipython
