@@ -20,6 +20,7 @@ RUN yum install -y --quiet wget && \
 ENV PATH $PATH:/opt/anaconda/bin
 
 # Disable token authentication for Jupyter Notebook
+RUN mkdir -p /root/.jupyter
 RUN touch /root/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
 RUN echo "c.NotebookApp.password = ''" >> /root/.jupyter/jupyter_notebook_config.py
@@ -47,7 +48,6 @@ RUN conda install wheel
 RUN conda install unicodecsv
 RUN conda install ujson
 RUN conda install zlib
-RUN conda install mrjob
 RUN conda update --all
 RUN conda clean -t
 RUN conda clean -p
@@ -57,3 +57,10 @@ RUN echo 'Set environment variables'
 ENV PYSPARK_PYTHON /opt/anaconda/bin/python
 ENV IPYTHON 1
 ENV IPYTHON_OPTS "notebook --port 8889 --notebook-dir='/media/notebooks' --ip='*' --no-browser"
+
+# Download custom Docker startup file
+RUN cd /root && \
+	wget --quiet https://raw.githubusercontent.com/ankittharwani/mids-cloudera-hadoop/master/startup.sh
+
+RUN source /opt/anaconda/bin/activate
+RUN pip install mrjob
