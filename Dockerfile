@@ -5,7 +5,8 @@ MAINTAINER Ankit Tharwani
 RUN echo 'Install Development Tools'
 RUN yum clean all
 RUN rpm --rebuilddb
-RUN yum install -y 'Development Tools'
+RUN yum clean all
+RUN yum groupinstall -y 'Development Tools'
 
 # Install and update miniconda and other packages
 RUN echo 'Install miniconda and more'
