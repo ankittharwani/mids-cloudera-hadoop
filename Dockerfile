@@ -4,7 +4,7 @@ MAINTAINER Ankit Tharwani
 # Install linux development tools
 RUN echo 'Install Development Tools'
 RUN yum clean all
-RUN rpm --rebuilddb
+RUN rpm --rebuilddb; yum install -y yum-plugin-ovl
 RUN yum clean all
 RUN yum groupinstall -y 'Development Tools'
 
@@ -66,3 +66,12 @@ RUN cd /root && \
 
 RUN source /opt/anaconda/bin/activate
 RUN pip install mrjob
+
+# Add Tini
+ENV TINI_VERSION v0.13.2
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
+
+# Run jupyter under Tini
+CMD ["jupyter", "notebook", "--port=8889", "--notebook-dir='/media/notebooks'", "--no-browser", "--ip='*'", "&"]
