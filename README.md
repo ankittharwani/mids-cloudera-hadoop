@@ -4,7 +4,7 @@
 This docker image consists of the Cloudera QuickStart image extended with miniconda, important python packages and Jupyter notebook configured with pyspark.
 
 ### Running this image on your machine
-<br /><br />
+
 #### Install Docker Engine
 * Before we start using the image, please make sure the Docker Engine is installed on your machine.
 * For instructions installing docker engine, refer to the link below:
@@ -25,8 +25,7 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 ```
 docker pull ankittharwani/mids-cloudera-hadoop
 ```
-<br /><br />
-
+<br />
 #### Create a Docker container with the pulled image
 * Once you have the Docker image pulled, you can create a container with the following command:
 
@@ -55,7 +54,7 @@ For more details, you can refer to:
 ```
 docker ps
 ```
-<br /><br />
+<br />
 
 #### Accessing the container
 
