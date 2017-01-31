@@ -94,7 +94,7 @@ You can replace **8887** with the **hue-port** configured above
 Username: cloudera
 
 Password: cloudera
-
+<br />
 
 ### Conda and Python Packages
 
