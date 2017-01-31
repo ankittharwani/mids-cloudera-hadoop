@@ -62,7 +62,10 @@ ENV IPYTHON_OPTS "notebook --port 8889 --notebook-dir='/media/notebooks' --ip='*
 # Download custom Docker startup file
 RUN cd /root && \
 	wget --quiet https://raw.githubusercontent.com/ankittharwani/mids-cloudera-hadoop/master/startup.sh && \
-	chmod 775 /root/startup.sh
+	chmod 755 /root/startup.sh && \
+	wget --quiet https://raw.githubusercontent.com/ankittharwani/mids-cloudera-hadoop/master/docker-quickstart && \
+	chmod 755 /root/docker-quickstart && \
+	cat docker-quickstart > /usr/bin/docker-quickstart
 
 RUN source /opt/anaconda/bin/activate
 RUN pip install mrjob
