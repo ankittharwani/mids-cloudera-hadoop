@@ -4,15 +4,14 @@
 This docker image consists of the Cloudera QuickStart image extended with miniconda, important python packages and Jupyter notebook configured with pyspark.
 
 ### Running this image on your machine
-
+<br /><br />
 #### Install Docker Engine
 * Before we start using the image, please make sure the Docker Engine is installed on your machine.
 * For instructions installing docker engine, refer to the link below:
 > https://docs.docker.com/engine/installation/
 
 * You can just stop at Step 1, i.e. "Install and Run Docker for Mac"
-
-
+<br /><br />
 
 #### Pull the Docker Image
 * Once you have the Docker Engine up and running, you can pull the **mids-cloudera-hadoop** image.
@@ -26,8 +25,7 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 ```
 docker pull ankittharwani/mids-cloudera-hadoop
 ```
-
-
+<br /><br />
 
 #### Create a Docker container with the pulled image
 * Once you have the Docker image pulled, you can create a container with the following command:
@@ -38,16 +36,17 @@ docker run --hostname=quickstart.cloudera \
            --name=cloudera \
            -t -i -d \
            -p 8889:8889 \
-           -p 8888:8888 \
+           -p 8887:8888 \
            -p 7180:7180 \
            -p 8088:8088 \
            -p 8042:8042 \
+           -p 10020:10020 \
            -p 19888:19888 \
            -v <host-path-to-mount-inside-container>:/media/notebooks \
-           ankittharwani/mids-cloudera-hadoop:latest \
-           /usr/bin/docker-quickstart
+           mids-cloudera-hadoop:latest \
+           bash -c '/root/startup.sh; /usr/bin/docker-quickstart'
 ```
-* Replace `<host-path-to-mount-inside-container>` with the directory on your machine which you'd want to make available in the container.
+> `<host-path-to-mount-inside-container>` is the path on your local drive which would be made available inside the docker. This will also be the default notebook directory within Jupyter.
 
 For more details, you can refer to:
 > https://www.cloudera.com/documentation/enterprise/5-6-x/topics/quickstart_docker_container.html
@@ -56,32 +55,24 @@ For more details, you can refer to:
 ```
 docker ps
 ```
+<br /><br />
 
+#### Accessing the container
 
+* One of the configurations you can do on your host machine is to add a new hosts entry. This makes all reference to http://quickstart.cloudera/ resolve to http://localhost automatically.
+Add **127.0.0.1 quickstart.cloudera** to **/etc/hosts**
 
-#### Login to the container and launch notebook / pyspark
+* Important URLs:
+	* Jupyter Notebook: http://quickstart.cloudera:8889
+	* Resource Manager: http://quickstart.cloudera:8088
+	* Node Manager: http://quickstart.cloudera:8042
+	* MapReduce Job History Server: http://quickstart.cloudera:19888
+	* Cloudera Manager (if enabled): http://quickstart.cloudera:7180
+	* Hue (if enabled, details below): http://quickstart.cloudera:8887
 
 * Once the container has been created, you can login to it (launch bash terminal):
 ```
 docker exec -ti cloudera /bin/bash
-```
-
-* Once inside the terminal, you can launch notebook/pyspark by typing **pyspark** in the terminal. This will generate you a URL with a login token, which you can copy-paste in the host machine's browser.
-```
-[root@quickstart /]# pyspark
-[TerminalIPythonApp] WARNING | Subcommand `ipython notebook` is deprecated and will be removed in future versions.
-[TerminalIPythonApp] WARNING | You likely want to use `jupyter notebook` in the future
-[I 20:54:18.598 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
-[W 20:54:18.812 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
-[I 20:54:18.897 NotebookApp] Serving notebooks from local directory: /media/notebooks
-[I 20:54:18.897 NotebookApp] 0 active kernels
-[I 20:54:18.899 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8889/?token=bc0ab6b91dcb2a832f11beab991bf21ed0e9bb334cbd9393
-[I 20:54:18.899 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[C 20:54:18.902 NotebookApp]
-
-    Copy/paste this URL into your browser when you connect for the first time,
-    to login with a token:
-        http://localhost:8889/?token=xxx
 ```
 
 * You can also run a few hadoop commands to test everything is okay:
@@ -97,9 +88,9 @@ drwxr-xr-x   - hdfs  supergroup          0 2016-04-06 02:27 /var
 
 * With the current Cloudera Docker image, you should also be able to access Hue, which is a web based interface to Hive/Impala/HDFS etc. To access:
 
-> http://localhost:8888/
+> http://localhost:8887/
 
-You can replace **8888** with the **hue-port** configured above
+You can replace **8887** with the **hue-port** configured above
 
 Username: cloudera
 
