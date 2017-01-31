@@ -1,11 +1,11 @@
-## MIDS W261 - Cloudera Hadoop on Docker
+# MIDS W261 - Cloudera Hadoop on Docker
 
 ---
 This docker image consists of the Cloudera QuickStart image extended with miniconda, important python packages and Jupyter notebook configured with pyspark.
 
-### Running this image on your machine
+## Running this image on your machine
 
-#### Install Docker Engine
+### Install Docker Engine
 * Before we start using the image, please make sure the Docker Engine is installed on your machine.
 * For instructions installing docker engine, refer to the link below:
 > https://docs.docker.com/engine/installation/
@@ -13,7 +13,7 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 * You can just stop at Step 1, i.e. "Install and Run Docker for Mac"
 <br /><br />
 
-#### Pull the Docker Image
+### Pull the Docker Image
 * Once you have the Docker Engine up and running, you can pull the **mids-cloudera-hadoop** image.
 
 * You can navigate to the image at the Docker Hub link below:
@@ -26,7 +26,7 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 docker pull ankittharwani/mids-cloudera-hadoop
 ```
 <br />
-#### Create a Docker container with the pulled image
+### Create a Docker container with the pulled image
 * Once you have the Docker image pulled, you can create a container with the following command:
 
 ```
@@ -56,7 +56,7 @@ docker ps
 ```
 <br />
 
-#### Accessing the container
+### Accessing the container
 
 * One of the configurations you can do on your host machine is to add a new hosts entry. This makes all reference to http://quickstart.cloudera/ resolve to http://localhost automatically.
 Add **127.0.0.1 quickstart.cloudera** to **/etc/hosts**
@@ -96,7 +96,7 @@ Username: cloudera
 Password: cloudera
 
 
-#### Conda and Python Packages
+### Conda and Python Packages
 
 * The following python packages are installed under Conda:
 	* bokeh
