@@ -26,6 +26,7 @@ This docker image consists of the Cloudera QuickStart image extended with minico
 docker pull ankittharwani/mids-cloudera-hadoop
 ```
 <br />
+
 ### Create a Docker container with the pulled image
 * Once you have the Docker image pulled, you can create a container with the following command:
 
@@ -94,7 +95,7 @@ You can replace **8887** with the **hue-port** configured above
 Username: cloudera
 
 Password: cloudera
-<br />
+<br /><br />
 
 ### Conda and Python Packages
 
