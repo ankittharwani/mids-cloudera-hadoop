@@ -42,7 +42,7 @@ docker run --hostname=quickstart.cloudera \
            -p 10020:10020 \
            -p 19888:19888 \
            -v <host-path-to-mount-inside-container>:/media/notebooks \
-           mids-cloudera-hadoop:latest \
+           ankittharwani/mids-cloudera-hadoop:latest \
            bash -c '/root/startup.sh; /usr/bin/docker-quickstart'
 ```
 > `<host-path-to-mount-inside-container>` is the path on your local drive which would be made available inside the docker. This will also be the default notebook directory within Jupyter.
