@@ -128,3 +128,12 @@ Password: cloudera
 ```
 source /opt/anaconda/bin/activate
 ```
+
+* To use all python packages (esp. numpy) within hadoop:
+```
+Add the following parameter to Map Reduce Streaming commands:
+-cmdenv PATH=/opt/anaconda/bin:$PATH
+
+Add the following parameter to MRJob commands:
+--cmdenv PATH=/opt/anaconda/bin:$PATH
+```
