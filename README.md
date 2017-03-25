@@ -137,3 +137,6 @@ Password: cloudera
 ```
 source /opt/anaconda/bin/activate
 ```
+
+* To use PySpark within Jupyter, below is a sample notebook:
+http://nbviewer.jupyter.org/urls/dl.dropbox.com/s/l4auzjcykgqirl0/PySpark%20Example.ipynb
