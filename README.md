@@ -28,7 +28,9 @@ docker pull ankittharwani/mids-cloudera-hadoop
 <br />
 
 ### Create a Docker container with the pulled image
-* Once you have the Docker image pulled, you can create a container with the following command:
+Once you have the Docker image pulled, you can create a container in one of the following two ways:
+
+1. Create a container with the following command in your terminal:
 
 ```
 docker run --hostname=quickstart.cloudera \
@@ -48,7 +50,14 @@ docker run --hostname=quickstart.cloudera \
 ```
 > `<host-path-to-mount-inside-container>` is the path on your local drive which would be made available inside the docker. This will also be the default notebook directory within Jupyter.
 
-For more details, you can refer to:
+2. Use the docker-compose.yml file to start your container:
+
+```
+$ cd /path/to/docker-compose.yml
+$ docker-compose up -d
+```
+
+The ports in the above terminal command may differ from those in the docker-compose.yml file. Feel free to add or remove ports as needed. For more details, you can refer to:
 > https://www.cloudera.com/documentation/enterprise/5-6-x/topics/quickstart_docker_container.html
 
 * Once you've created the container and has been ran, you can check running status by:
@@ -129,6 +138,7 @@ Password: cloudera
 source /opt/anaconda/bin/activate
 ```
 
+
 * To use all python packages (esp. numpy) within hadoop:
 ```
 Add the following parameter to Map Reduce Streaming commands:
@@ -137,3 +147,6 @@ Add the following parameter to Map Reduce Streaming commands:
 Add the following parameter to MRJob commands:
 --cmdenv PATH=/opt/anaconda/bin:$PATH
 ```
+
+* To use PySpark within Jupyter, below is a sample notebook:
+http://nbviewer.jupyter.org/urls/dl.dropbox.com/s/l4auzjcykgqirl0/PySpark%20Example.ipynb
