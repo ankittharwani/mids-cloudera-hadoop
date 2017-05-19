@@ -98,6 +98,10 @@ Docker needs 2 CPUs and 4 GB of RAM to ensure resource managers don't crash duri
 
 ## Windows Issues
 
-Windows 10 Pro/Education is required to run Docker on Windows. A free license of Windows 10 Education is avaliable to all students through [UCB Software Central](https://software.berkeley.edu/operating-systems#Microsoft)
+- Windows 10 Pro/Education is required to run Docker on Windows. A free license of Windows 10 Education is avaliable to all students through [UCB Software Central](https://software.berkeley.edu/operating-systems#Microsoft)
 
 ## Mac Issues
+
+- Macs require a computer capable of virtualization to test this run `sysctl kern.hv_support` in a terminal.
+  - If 1 then good to go
+  - If 0 then you need a new computer
