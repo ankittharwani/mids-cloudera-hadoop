@@ -38,6 +38,7 @@ services:
       - "8088:8088"   # yarn resource manager webapp address
       - "19888:19888" # mapreduce job history webapp address
       - "8983:8983"   # Solr console
+      - "8032:8032"   # yarn resource manager access
       - "8042:8042"   # yarn node manager
       - "60010:60010" # hbase
     tty: true
@@ -64,8 +65,44 @@ If we review the bash scripts `startup.sh` we can see that the jupyter notebook 
 
 ## General Issues
 
+### Hostname mapping
+
+Apply the `quickstart.cloudera` alias for `127.0.0.1` aka `localhost`
+- Linux & Mac
+  1. Open Terminal
+  2. Open hostfile by running `sudo nano /etc/hosts`
+  3. Append the following line, then save: `127.0.0.1    quickstart.cloudera`
+  4. Refresh DNS with `sudo killall -HUP mDNSResponder`
+- Windows:
+  1. Open notepad as administrator (otherwise you'll not be able to save the file)
+  2. Open `C:\Windows\System32\drivers\etc\hosts` in notepad.  Note the file has no extension
+  3. Append the following line, then save: `127.0.0.1    quickstart.cloudera`
+  4. Refresh DNS by running `ipconfig /flushdns` in command prompt or powershell
+  
+### Minimum System Requirements for MIDS W261 Cloudera Hadoop Container
+
+Docker needs 2 CPUs and 4 GB of RAM to ensure resource managers don't crash during normal operation. 
+- Linux
+  1. By default Docker shares the same resources as the local computer.
+- Windows
+  1. Right click Docker in the notification area
+  2. Click Settings
+  3. Click Advanced
+  4. Slide Memory to 4096 MB
+- Mac OS
+  1. Click Docker in the clock(?) area
+  2. Click Settings
+  3. Click Advanced
+  4. Slide Memory to 4096 MB
+  
 ## Linux Issues
 
 ## Windows Issues
 
+- Windows 10 Pro/Education is required to run Docker on Windows. A free license of Windows 10 Education is avaliable to all students through [UCB Software Central](https://software.berkeley.edu/operating-systems#Microsoft)
+
 ## Mac Issues
+
+- Macs require a computer capable of virtualization to test this run `sysctl kern.hv_support` in a terminal.
+  - If 1 then good to go
+  - If 0 then you need a new computer
