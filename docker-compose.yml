@@ -23,4 +23,4 @@ services:
     tty: true
     stdin_open: true
     volumes: 
-      - /home/pryan/Projects/ds@b/w261/midsw261/hw-pjryan126:/media/notebooks
+      - <your local shared directory here>:/media/notebooks
